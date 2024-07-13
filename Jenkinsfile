@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Doing checkout'
+                git branch: 'main', url: 'https://github.com/sagarkulkarni1989/aws-elastic-beanstalk-express-js-sample.git'
             }
         }
         
