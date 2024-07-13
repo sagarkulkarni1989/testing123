@@ -20,5 +20,11 @@ pipeline {
                 sh 'uname -a'
             }
         }
+        stage('deploy') {
+            steps {
+                echo 'Deploying code'
+                sh 'hostname'
+            }
+        }
     }
 }
