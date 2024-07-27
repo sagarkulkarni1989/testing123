@@ -1,23 +1,27 @@
 pipeline {
     agent any
-   
 
     stages {
-        stage('Checkout') {
+        stage('checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/sagarkulkarni1989/aws-elastic-beanstalk-express-js-sample.git'
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kishancs2020/webAppExample.git']])
             }
         }
         
-         stage('Build') {
+        stage('mvn compile') {
             steps {
-                echo 'Building code'
+                sh "mvn compile"
             }
         }
-          stage('test') {
+        
+        stage('mvn test') {
             steps {
-                echo 'testing'
-                sh 'uname -a'
+                sh "mvn test"
+            }
+        }
+        stage('mvn package') {
+            steps {
+                sh "mvn package"
             }
         }
     }
